@@ -109,7 +109,11 @@ class OpenRouterClient:
         }
 
         last_err = ""
-        for model_id in candidate_models[:4]:
+        start_ts = time.time()
+        for model_id in candidate_models[:3]:
+            if time.time() - start_ts > 32:
+                last_err = "OpenRouter time budget exceeded (32s)"
+                break
             try:
                 body_bytes = json.dumps(
                     {
@@ -125,7 +129,7 @@ class OpenRouterClient:
                     headers=req_headers,
                     method="POST",
                 )
-                with urllib.request.urlopen(req, timeout=30) as resp:
+                with urllib.request.urlopen(req, timeout=15) as resp:
                     if resp.status == 200:
                         data = json.loads(resp.read().decode("utf-8"))
                         choices = data.get("choices", [])

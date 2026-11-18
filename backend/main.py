@@ -177,8 +177,9 @@ try:
         payload: Dict[str, Any],
         x_openrouter_key: Optional[str] = Header(default=None, alias="X-OpenRouter-Key"),
     ):
+        import asyncio
         try:
-            return handle_chat(payload, override_key=x_openrouter_key)
+            return await asyncio.to_thread(handle_chat, payload, override_key=x_openrouter_key)
         except ValueError as ve:
             raise HTTPException(status_code=422, detail=str(ve))
 
