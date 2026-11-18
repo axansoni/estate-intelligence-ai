@@ -104,7 +104,7 @@ export default function App() {
             onClick={handleOpenSources}
             className="text-xs px-3 py-1.5 rounded-lg border border-slate-700 bg-slate-900 hover:border-amber-500/60 text-slate-200"
           >
-            Indexed Sources ({health?.knowledge_base?.total_records || 34})
+            Indexed Sources ({health?.knowledge_base?.total_records || 46})
           </button>
 
           {messages.length > 0 && (
