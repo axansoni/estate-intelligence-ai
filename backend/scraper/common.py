@@ -225,7 +225,8 @@ def deduplicate_records(records: List[PropertyRecord]) -> List[PropertyRecord]:
 
     for rec in records:
         norm_url = rec.page_url.strip().rstrip("/").lower()
-        norm_name = f"{rec.source_website.lower()}::{re.sub(r'[^a-z0-9\u0600-\u06FF]+', '', rec.project_name.lower())}"
+        clean_name = re.sub(r"[^a-z0-9\u0600-\u06FF]+", "", rec.project_name.lower())
+        norm_name = f"{rec.source_website.lower()}::{clean_name}"
         if norm_url in seen_urls or norm_name in seen_names:
             continue
         seen_urls.add(norm_url)
