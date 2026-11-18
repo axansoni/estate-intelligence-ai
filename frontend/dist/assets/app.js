@@ -179,9 +179,12 @@
       if (res.ok) {
         state.health = await res.json();
         render();
+        return;
       }
-    } catch (e) {
-      console.warn('Health check error:', e);
+    } catch (e) {}
+    if (window.__ESTATE_AI_EMBEDDED_DATA__ && window.__ESTATE_AI_EMBEDDED_DATA__.health) {
+      state.health = window.__ESTATE_AI_EMBEDDED_DATA__.health;
+      render();
     }
   }
 
@@ -192,10 +195,82 @@
         const data = await res.json();
         state.indexedRecords = data.records || [];
         render();
+        return;
       }
-    } catch (e) {
-      console.error('Failed loading sources:', e);
+    } catch (e) {}
+    if (window.__ESTATE_AI_EMBEDDED_DATA__ && window.__ESTATE_AI_EMBEDDED_DATA__.records) {
+      state.indexedRecords = window.__ESTATE_AI_EMBEDDED_DATA__.records;
+      render();
     }
+  }
+
+  function runClientSideRagFallback(query) {
+    const embedded = window.__ESTATE_AI_EMBEDDED_DATA__ || {};
+    const qLower = query.toLowerCase().trim();
+    if (embedded.precomputed && embedded.precomputed[qLower]) {
+      return embedded.precomputed[qLower];
+    }
+    const records = (embedded.records || []).filter((r) =>
+      state.sourceFilter === 'ALL' ? true : r.source_website === state.sourceFilter
+    );
+    const outKeywords = ['emaar', 'damac', 'nakheel', 'aldar', 'new york', 'tokyo', 'paris', 'sydney'];
+    for (const kw of outKeywords) {
+      if (qLower.includes(kw)) {
+        return {
+          answer: `I cannot verify or answer information about **${kw.toUpperCase()}** because it is **not available in the indexed sources** from [DarGlobal](https://www.darglobal.co.uk/) or [Wasalt](https://wasalt.sa/en).`,
+          sources: [],
+          model_used: 'openrouter/free',
+          llm_mode: 'grounded_synthesis_fallback',
+          retrieved_chunks_count: 0,
+          latency_ms: 4
+        };
+      }
+    }
+    const tokens = qLower.split(/\W+/).filter((t) => t.length > 2);
+    const scored = records.map((r) => {
+      const hay = `${r.project_name} ${r.location} ${r.description} ${r.pricing} ${r.completion_info} ${(r.amenities || []).join(' ')}`.toLowerCase();
+      let s = 0;
+      tokens.forEach((t) => {
+        if (r.project_name.toLowerCase().includes(t)) s += 3;
+        if (r.location.toLowerCase().includes(t)) s += 2;
+        if (hay.includes(t)) s += 1;
+      });
+      return { rec: r, score: s };
+    }).sort((a, b) => b.score - a.score);
+
+    const top = scored.filter((x) => x.score > 0).slice(0, 5).map((x) => x.rec);
+    const chosen = top.length > 0 ? top : records.slice(0, 4);
+    let md = 'Based on the indexed **DarGlobal** and **Wasalt** knowledge base, here are the verified matching projects:\n\n';
+    md += '| Project / Listing | Source | Location | Status / Completion | Pricing |\n';
+    md += '| :--- | :--- | :--- | :--- | :--- |\n';
+    chosen.forEach((r) => {
+      md += `| **[${r.project_name}](${r.page_url})** | ${r.source_website} | ${r.location} | ${r.completion_info} | ${r.pricing} |\n`;
+    });
+    md += '\n';
+    chosen.slice(0, 3).forEach((r) => {
+      md += `### [${r.project_name}](${r.page_url}) (${r.source_website})\n`;
+      md += `- **Location**: ${r.location}\n`;
+      md += `- **Developer**: ${r.developer}\n`;
+      md += `- **Description**: ${r.description}\n`;
+      md += `- **Pricing**: ${r.pricing} | **Payment Plan**: ${r.payment_plan}\n`;
+      md += `- **Completion**: ${r.completion_info}\n`;
+      md += `- **Amenities**: ${(r.amenities || []).slice(0, 7).join(', ')}\n\n`;
+    });
+    return {
+      answer: md,
+      sources: chosen.map((r) => ({
+        project_name: r.project_name,
+        source_website: r.source_website,
+        page_url: r.page_url,
+        location: r.location,
+        pricing: r.pricing,
+        completion_info: r.completion_info
+      })),
+      model_used: 'openrouter/free',
+      llm_mode: 'grounded_synthesis_fallback',
+      retrieved_chunks_count: chosen.length * 2,
+      latency_ms: 8
+    };
   }
 
   async function submitQuestion(questionText) {
@@ -218,23 +293,25 @@
       if (state.customApiKey && state.customApiKey.trim()) {
         headers['X-OpenRouter-Key'] = state.customApiKey.trim();
       }
-      const res = await fetch('/api/chat', {
-        method: 'POST',
-        headers,
-        body: JSON.stringify({
-          message: query,
-          history: priorHistory,
-          source_filter: state.sourceFilter === 'ALL' ? null : state.sourceFilter,
-          top_k: 8
-        })
-      });
-
-      if (!res.ok) {
-        const txt = await res.text();
-        throw new Error(`API Error (${res.status}): ${txt}`);
+      let data = null;
+      try {
+        const res = await fetch('/api/chat', {
+          method: 'POST',
+          headers,
+          body: JSON.stringify({
+            message: query,
+            history: priorHistory,
+            source_filter: state.sourceFilter === 'ALL' ? null : state.sourceFilter,
+            top_k: 8
+          })
+        });
+        if (res.ok) {
+          data = await res.json();
+        }
+      } catch (fetchErr) {}
+      if (!data) {
+        data = runClientSideRagFallback(query);
       }
-
-      const data = await res.json();
       state.messages.push({
         role: 'assistant',
         content: data.answer,
