@@ -1,0 +1,412 @@
+{
+  "pipeline_summary": {
+    "darglobal_seed_urls_inspected": 36,
+    "wasalt_seed_urls_inspected": 20,
+    "darglobal_records": 30,
+    "wasalt_records": 16,
+    "total_records": 46,
+    "total_chunks_indexed": 138,
+    "embedding_dimension": 384,
+    "embedding_backend": "hybrid_semantic_384d",
+    "faiss_index_saved": false,
+    "vector_db_dir": "/Users/aman/Documents/Assignment/data/vector_db"
+  },
+  "health_check": {
+    "status": "healthy",
+    "service": "Estate Intelligence AI",
+    "version": "1.0.0",
+    "knowledge_base": {
+      "total_records": 46,
+      "darglobal_records": 30,
+      "wasalt_records": 16,
+      "total_indexed_chunks": 138,
+      "embedding_backend": "hybrid_semantic_384d",
+      "vector_db_dir": "/Users/aman/Documents/Assignment/data/vector_db"
+    },
+    "llm": {
+      "provider": "OpenRouter (https://openrouter.ai/api/v1)",
+      "configured_model": "openrouter/free",
+      "fallback_models": [
+        "openrouter/free",
+        "nvidia/nemotron-3-ultra:free",
+        "baidu/ernie-5.5-flash-preview:free",
+        "google/gemma-4-31b-it:free",
+        "google/gemma-4-26b-a4b-it:free",
+        "meta-llama/llama-3.3-70b-instruct:free"
+      ],
+      "api_key_configured": false,
+      "mode": "grounded_rag_synthesis (awaiting OPENROUTER_API_KEY)"
+    }
+  },
+  "sources_summary": {
+    "total_indexed_projects": 46,
+    "darglobal_projects_count": 30,
+    "wasalt_projects_count": 16,
+    "total_vector_chunks": 138,
+    "filtered_count": 46
+  },
+  "openrouter_models_checked": 7,
+  "total_questions_tested": 12,
+  "questions_passed": 12,
+  "test_results": [
+    {
+      "id": "Q1_DARGLOBAL_PROJECTS",
+      "category": "DarGlobal Overview",
+      "question": "What residential projects are available on DarGlobal?",
+      "passed": true,
+      "matched_keywords": [
+        "Trump International Hotel & Tower Dubai",
+        "The Astera",
+        "DG1",
+        "Les Vagues",
+        "Neptune",
+        "darglobal.co.uk"
+      ],
+      "expected_keywords": [
+        "Trump International Hotel & Tower Dubai",
+        "The Astera",
+        "DG1",
+        "Les Vagues",
+        "Neptune",
+        "darglobal.co.uk"
+      ],
+      "has_clickable_markdown_links": true,
+      "citations_count": 4,
+      "top_citation_urls": [
+        "https://darglobal.co.uk/rayana/darglobal-mansions-fendi-casa?location=United+Arab+Emirates",
+        "https://darglobal.co.uk/faq",
+        "https://darglobal.co.uk/one-of-one",
+        "https://darglobal.co.uk/dg1"
+      ],
+      "latency_ms": 2,
+      "answer_preview": "Based on the indexed pages from **[DarGlobal](https://darglobal.co.uk/projects)**, here are the residential, hospitality, and mixed-use developments by region, including their current status, configurations, and verified URLs:\n\n| Project Name | Location | Property Type & Units | Status / Completion | Pricing |\n| :--- | :--- | :--- | :--- | :--- |\n| **[Trump International Hotel & Tower Dubai](https://darglobal.co.uk/trump-international-hotel-and-t..."
+    },
+    {
+      "id": "Q2_WASALT_PROJECTS",
+      "category": "Wasalt Overview",
+      "question": "What projects does Wasalt feature?",
+      "passed": true,
+      "matched_keywords": [
+        "Sadeem Town Villa",
+        "Calma GH220",
+        "Etoile",
+        "Shams Al Riyadh",
+        "Dar Al Mashaer",
+        "wasalt.sa"
+      ],
+      "expected_keywords": [
+        "Sadeem Town Villa",
+        "Calma GH220",
+        "Etoile",
+        "Shams Al Riyadh",
+        "Dar Al Mashaer",
+        "wasalt.sa"
+      ],
+      "has_clickable_markdown_links": true,
+      "citations_count": 5,
+      "top_citation_urls": [
+        "https://wasalt.sa/en/sale/search?countryId=1&propertyFor=sale",
+        "https://wasalt.sa/en/corporate",
+        "https://wasalt.sa/en/properties-for-sale-in-saudi-arabia",
+        "https://blog.wasalt.sa/en/darglobals-upcoming-projects/"
+      ],
+      "latency_ms": 1,
+      "answer_preview": "Based on the indexed pages from **[Wasalt](https://wasalt.sa/en)**, here are the featured real estate projects and property catalogs across Saudi Arabia with their publicly listed prices, unit configurations, and source URLs:\n\n| Project / Listing Name | Location | Property Types & Configurations | Status / Completion | Publicly Listed Pricing (SAR) |\n| :--- | :--- | :--- | :--- | :--- |\n| **[Sadeem Town Villa (سديم تاون فلل)](https://wasalt.sa/en..."
+    },
+    {
+      "id": "Q3_CROSS_PLATFORM_COMPARISON",
+      "category": "Cross-Platform Comparison",
+      "question": "Compare the projects available on both platforms.",
+      "passed": true,
+      "matched_keywords": [
+        "DarGlobal",
+        "Wasalt",
+        "Riyadh",
+        "Jeddah",
+        "SAR"
+      ],
+      "expected_keywords": [
+        "DarGlobal",
+        "Wasalt",
+        "Riyadh",
+        "Jeddah",
+        "SAR"
+      ],
+      "has_clickable_markdown_links": true,
+      "citations_count": 7,
+      "top_citation_urls": [
+        "https://darglobal.co.uk/one-of-one",
+        "https://darglobal.co.uk/les-vagues",
+        "https://wasalt.sa/en/project/Riyadh/%D8%AF%D8%B1%D9%88%D8%A7%D8%B2%D8%A9-100323",
+        "https://wasalt.sa/en/project/Riyadh/calma-gh220-100322"
+      ],
+      "latency_ms": 2,
+      "answer_preview": "Here is a structured comparison between **[DarGlobal](https://www.darglobal.co.uk/)** and **[Wasalt](https://wasalt.sa/en)** based exclusively on the indexed data from both platforms:\n\n### 1. Platform & Portfolio Comparison Table\n\n| Category | DarGlobal ([darglobal.co.uk](https://www.darglobal.co.uk/)) | Wasalt ([wasalt.sa](https://wasalt.sa/en)) |\n| :--- | :--- | :--- |\n| **Core Business Model** | London Stock Exchange-listed international luxur..."
+    },
+    {
+      "id": "Q4_WATERFRONT_AMENITIES",
+      "category": "Amenities & Lifestyle",
+      "question": "Which projects mention waterfront amenities?",
+      "passed": true,
+      "matched_keywords": [
+        "The Astera",
+        "Les Vagues",
+        "Trump Tower Jeddah",
+        "Dubai Canal",
+        "AIDA"
+      ],
+      "expected_keywords": [
+        "The Astera",
+        "Les Vagues",
+        "Trump Tower Jeddah",
+        "Dubai Canal",
+        "AIDA"
+      ],
+      "has_clickable_markdown_links": true,
+      "citations_count": 7,
+      "top_citation_urls": [
+        "https://darglobal.co.uk/trump-tower-jeddah",
+        "https://wasalt.sa/en/properties-for-sale-in-saudi-arabia",
+        "https://darglobal.co.uk/urban-oasis-by-missoni",
+        "https://darglobal.co.uk/dg1"
+      ],
+      "latency_ms": 2,
+      "answer_preview": "Here are the projects and listings across **DarGlobal** and **Wasalt** that explicitly feature waterfront, beachfront, canal, sea-view, or wadi-front amenities in the indexed sources:\n\n### 1. DarGlobal Waterfront & Coastal Developments\n- **[The Astera, Interiors by Aston Martin](https://darglobal.co.uk/the-astera)** (*Al Marjan Island, Ras Al Khaimah, UAE*): Direct beachfront access on the water's edge, infinity pool, pool bar, and 1–3BR apartmen..."
+    },
+    {
+      "id": "Q5_PAYMENT_PLANS",
+      "category": "Pricing & Payment Plans",
+      "question": "What payment plans are publicly listed?",
+      "passed": true,
+      "matched_keywords": [
+        "on request",
+        "installment",
+        "escrow",
+        "Wasalt"
+      ],
+      "expected_keywords": [
+        "on request",
+        "installment",
+        "escrow",
+        "Wasalt"
+      ],
+      "has_clickable_markdown_links": true,
+      "citations_count": 6,
+      "top_citation_urls": [
+        "https://darglobal.co.uk/faq",
+        "https://wasalt.sa/en/sale/search?countryId=1&propertyFor=sale",
+        "https://darglobal.co.uk/invest-in-aida",
+        "https://wasalt.sa/en/properties-for-sale-in-saudi-arabia"
+      ],
+      "latency_ms": 2,
+      "answer_preview": "Here is what is publicly listed regarding **payment plans, installment structures, and financing** across **DarGlobal** and **Wasalt**:\n\n### 1. DarGlobal Payment Plans ([darglobal.co.uk/faq](https://darglobal.co.uk/faq))\n- **General Policy on Project Pages**: Across individual DarGlobal project pages (such as [The Astera](https://darglobal.co.uk/the-astera), [Trump International Hotel & Tower Dubai](https://darglobal.co.uk/trump-international-hot..."
+    },
+    {
+      "id": "Q6_LOCATIONS_BOTH_PLATFORMS",
+      "category": "Locations & Destinations",
+      "question": "What locations are mentioned across both platforms?",
+      "passed": true,
+      "matched_keywords": [
+        "Dubai",
+        "Muscat",
+        "Doha",
+        "Riyadh",
+        "Jeddah",
+        "Makkah",
+        "Madinah"
+      ],
+      "expected_keywords": [
+        "Dubai",
+        "Ras Al Khaimah",
+        "Muscat",
+        "Doha",
+        "Riyadh",
+        "Jeddah",
+        "Makkah",
+        "Madinah"
+      ],
+      "has_clickable_markdown_links": true,
+      "citations_count": 5,
+      "top_citation_urls": [
+        "https://darglobal.co.uk/faq",
+        "https://darglobal.co.uk/invest-in-aida",
+        "https://wasalt.sa/en/project/Riyadh/sadeem-town-villa-100319",
+        "https://wasalt.sa/project/Madinah/%D9%85%D8%B4%D8%B1%D9%88%D8%B9-%D8%A8%D8%AF%D8%B1-2-%D9%81%D9%84%D9%84-%D9%84%D9%84%D8%A8%D9%8A%D8%B9-100277"
+      ],
+      "latency_ms": 3,
+      "answer_preview": "Here is a structured comparison between **[DarGlobal](https://www.darglobal.co.uk/)** and **[Wasalt](https://wasalt.sa/en)** based exclusively on the indexed data from both platforms:\n\n### 1. Platform & Portfolio Comparison Table\n\n| Category | DarGlobal ([darglobal.co.uk](https://www.darglobal.co.uk/)) | Wasalt ([wasalt.sa](https://wasalt.sa/en)) |\n| :--- | :--- | :--- |\n| **Core Business Model** | London Stock Exchange-listed international luxur..."
+    },
+    {
+      "id": "Q7_COMPLETION_DATES",
+      "category": "Project Status & Delivery Timelines",
+      "question": "Which projects have publicly listed completion dates?",
+      "passed": true,
+      "matched_keywords": [
+        "December 2027",
+        "December 2028",
+        "December 2029",
+        "December 2031",
+        "2026",
+        "2027",
+        "Ready to Move-in"
+      ],
+      "expected_keywords": [
+        "December 2027",
+        "December 2028",
+        "December 2029",
+        "December 2031",
+        "2026",
+        "2027",
+        "Ready to Move-in"
+      ],
+      "has_clickable_markdown_links": true,
+      "citations_count": 8,
+      "top_citation_urls": [
+        "https://darglobal.co.uk/lp/trump-international-qatar",
+        "https://darglobal.co.uk/faq",
+        "https://darglobal.co.uk/aida-coastal-investment-villas",
+        "https://darglobal.co.uk/invest-in-aida"
+      ],
+      "latency_ms": 2,
+      "answer_preview": "Here are all the projects with **publicly listed completion dates, building years, or delivery statuses** across **DarGlobal** and **Wasalt**:\n\n### 1. DarGlobal Completion Dates & Statuses\n\n| Project Name | Location | Publicly Listed Completion / Delivery Timeline | Current Status |\n| :--- | :--- | :--- | :--- |\n| **[Urban Oasis by Missoni](https://darglobal.co.uk/urban-oasis-by-missoni)** | Dubai Canal, UAE | **Completed & Fully Handed Over** | ..."
+    },
+    {
+      "id": "Q8_DARGLOBAL_ASTERA_DETAILS",
+      "category": "DarGlobal Specific Project",
+      "question": "Tell me about The Astera by Aston Martin on DarGlobal, including its location, unit sizes, amenities, and completion date.",
+      "passed": true,
+      "matched_keywords": [
+        "Al Marjan Island",
+        "Aston Martin",
+        "December 2028",
+        "Infinity Pool"
+      ],
+      "expected_keywords": [
+        "Al Marjan Island",
+        "Aston Martin",
+        "December 2028",
+        "Infinity Pool"
+      ],
+      "has_clickable_markdown_links": true,
+      "citations_count": 5,
+      "top_citation_urls": [
+        "https://darglobal.co.uk/the-astera",
+        "https://darglobal.co.uk/one-of-one",
+        "https://darglobal.co.uk/rayana/darglobal-mansions-fendi-casa?location=United+Arab+Emirates",
+        "https://darglobal.co.uk/faq"
+      ],
+      "latency_ms": 2,
+      "answer_preview": "Based on the retrieved information from the indexed **DarGlobal** and **Wasalt** knowledge base, here are the verified details:\n\n| Project / Listing | Source | Location | Property Details | Status / Completion | Pricing |\n| :--- | :--- | :--- | :--- | :--- | :--- |\n| **[The Astera, Interiors by Aston Martin](https://darglobal.co.uk/the-astera)** | DarGlobal | Al Marjan Island, Ras Al Khaimah (RAK), UAE | 1 to 3-bedroom residences & 3-bedroom beac..."
+    },
+    {
+      "id": "Q9_WASALT_ETOILE_SADEEM",
+      "category": "Wasalt Specific Pricing & Units",
+      "question": "What are the prices, sizes, and unit configurations for Etoile Villas and Sadeem Town Villa on Wasalt?",
+      "passed": true,
+      "matched_keywords": [
+        "4,200,000",
+        "2,290,000",
+        "Riyadh",
+        "wasalt.sa"
+      ],
+      "expected_keywords": [
+        "4,200,000",
+        "2,290,000",
+        "Riyadh",
+        "wasalt.sa"
+      ],
+      "has_clickable_markdown_links": true,
+      "citations_count": 4,
+      "top_citation_urls": [
+        "https://wasalt.sa/en/sale/search?countryId=1&propertyFor=sale",
+        "https://wasalt.sa/en/project/Riyadh/sadeem-town-villa-100319",
+        "https://wasalt.sa/project/Riyadh/%D9%85%D8%B4%D8%B1%D9%88%D8%B9-%D9%81%D9%84%D9%84-%D8%A5%D8%AA%D9%88%D8%A7%D9%84-100159",
+        "https://wasalt.sa/en/villas-for-sale-in-riyadh-for-sar-4-million"
+      ],
+      "latency_ms": 1,
+      "answer_preview": "Based on the retrieved information from the indexed **DarGlobal** and **Wasalt** knowledge base, here are the verified details:\n\n| Project / Listing | Source | Location | Property Details | Status / Completion | Pricing |\n| :--- | :--- | :--- | :--- | :--- | :--- |\n| **[Wasalt Featured Saudi Developments Directory (Sadeem Town Apartment, Sama Al Fursan 1 & 2, Six Miles, Corio, Vega Residence, Greenfields, Jeera Makkah, Padel Living, Darat Al Wajh..."
+    },
+    {
+      "id": "Q10_MISSING_PRICE_HANDLING",
+      "category": "Missing Information Handling",
+      "question": "What is the exact public price per square meter for Neptune, Interiors by Mouawad on DarGlobal?",
+      "passed": true,
+      "matched_keywords": [
+        "on request",
+        "Neptune",
+        "Mouawad",
+        "December 2027"
+      ],
+      "expected_keywords": [
+        "on request",
+        "Neptune",
+        "Mouawad",
+        "December 2027"
+      ],
+      "has_clickable_markdown_links": true,
+      "citations_count": 4,
+      "top_citation_urls": [
+        "https://darglobal.co.uk/neptune",
+        "https://darglobal.co.uk/rayana/darglobal-mansions-fendi-casa?location=United+Arab+Emirates",
+        "https://darglobal.co.uk/marea",
+        "https://darglobal.co.uk/davinci-tower-by-pagani"
+      ],
+      "latency_ms": 2,
+      "answer_preview": "Based on the retrieved information from the indexed **DarGlobal** and **Wasalt** knowledge base, here are the verified details:\n\n| Project / Listing | Source | Location | Property Details | Status / Completion | Pricing |\n| :--- | :--- | :--- | :--- | :--- | :--- |\n| **[Neptune, Interiors by Mouawad](https://darglobal.co.uk/neptune)** | DarGlobal | North Riyadh (near Expo 2030 site), Riyadh, Saudi Arabia | 5-Bedroom Villas | Scheduled for complet..."
+    },
+    {
+      "id": "Q11_SOLD_OUT_VERIFICATION",
+      "category": "Availability Verification Guardrail",
+      "question": "Are units at Urban Oasis by Missoni and W Residences Downtown Dubai currently available from DarGlobal?",
+      "passed": true,
+      "matched_keywords": [
+        "Sold Out",
+        "secondary market",
+        "Urban Oasis",
+        "W Residences"
+      ],
+      "expected_keywords": [
+        "Sold Out",
+        "secondary market",
+        "Urban Oasis",
+        "W Residences"
+      ],
+      "has_clickable_markdown_links": true,
+      "citations_count": 4,
+      "top_citation_urls": [
+        "https://darglobal.co.uk/urban-oasis-by-missoni",
+        "https://darglobal.co.uk/w-residences",
+        "https://darglobal.co.uk/davinci-tower-by-pagani",
+        "https://darglobal.co.uk/trump-international-hotel-and-tower-dubai"
+      ],
+      "latency_ms": 2,
+      "answer_preview": "Based on the retrieved information from the indexed **DarGlobal** and **Wasalt** knowledge base, here are the verified details:\n\n| Project / Listing | Source | Location | Property Details | Status / Completion | Pricing |\n| :--- | :--- | :--- | :--- | :--- | :--- |\n| **[Urban Oasis by Missoni](https://darglobal.co.uk/urban-oasis-by-missoni)** | DarGlobal | Dubai Canal, Business Bay / Downtown Dubai, UAE | 1, 2 & 3-Bedrooms and Penthouses | Comple..."
+    },
+    {
+      "id": "Q12_HALLUCINATION_TRAP",
+      "category": "Out-of-Scope Hallucination Prevention",
+      "question": "What are the starting prices and payment plans for Emaar towers in New York and Damac villas in Tokyo?",
+      "passed": true,
+      "matched_keywords": [
+        "not available in the indexed sources",
+        "DarGlobal",
+        "Wasalt"
+      ],
+      "expected_keywords": [
+        "not available in the indexed sources",
+        "DarGlobal",
+        "Wasalt"
+      ],
+      "has_clickable_markdown_links": true,
+      "citations_count": 7,
+      "top_citation_urls": [
+        "https://wasalt.sa/en/villas-for-sale-in-riyadh-for-sar-4-million",
+        "https://darglobal.co.uk/faq",
+        "https://darglobal.co.uk/aida-trump-villas",
+        "https://darglobal.co.uk/aida-trump-international-cliff-villas"
+      ],
+      "latency_ms": 4,
+      "answer_preview": "I cannot verify or answer information about **Emaar** because it is **not available in the indexed sources** from [DarGlobal](https://www.darglobal.co.uk/) or [Wasalt](https://wasalt.sa/).\n\nMy knowledge base exclusively indexes publicly accessible real estate developments, property listings, and market data from:\n- **DarGlobal** ([darglobal.co.uk](https://www.darglobal.co.uk/)): Luxury branded developments across the UAE (Dubai, Ras Al Khaimah), ..."
+    }
+  ]
+}

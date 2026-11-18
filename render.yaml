@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: estate-intelligence-ai
+    runtime: docker
+    plan: free
+    healthCheckPath: /api/health
+    envVars:
+      - key: PORT
+        value: 8000
+      - key: OPENROUTER_MODEL
+        value: openrouter/free
+      - key: OPENROUTER_API_KEY
+        sync: false
+      - key: USE_LIGHTWEIGHT_EMBEDDINGS
+        value: "1"
